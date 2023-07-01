@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">Fantasy King</string>
+    <string name="team_hai_toh">Team Hai Toh</string>
+    <string name="mazaa_hai">Mazaa Hai</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="cricket">Cricket</string>
+    <string name="football">Football</string>
+    <string name="match_details">Match Details</string>
+    <string name="tournament">Tournament</string>
+    <string name="tata_ipl">TATA IPL</string>
+    <string name="_06_30">06:30 PM</string>
+    <string name="time">Time</string>
+    <string name="date">Date</string>
+    <string name="venue">Venue</string>
+    <string name="investment_quality_guide">Investment Quality Guide</string>
+    <string name="high">High</string>
+    <string name="we_recommend_you_to_play_this_match">We recommend you to play this match</string>
+    <string name="preview">Preview</string>
+    <string name="write_here">Write here</string>
+    <string name="c_amp_vc_choice"><![CDATA[C & VC choice]]></string>
+    <string name="rohit_sharma">Rohit Sharma</string>
+    <string name="ms_dhoni">MS Dhoni</string>
+    <string name="a_vs_b">A vs B</string>
+    <string name="_13_april_22">13 April,22</string>
+    <string name="statistics_amp_players_info"><![CDATA[Statistics & Players Info]]></string>
+    <string name="vice_captain">Vice-Captain -</string>
+    <string name="a_playing_11">A Playing 11</string>
+    <string name="b_playing_11">B Playing 11</string>
+    <string name="match_quality">Match Quality - </string>
+    <string name="status">Status</string>
+    <string name="upload">Upload</string>
+    <string name="match">Match</string>
+    <string name="upload_team"> Upload team </string>
+</resources>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+
+        android:id="@+id/navigation_profile"
+        android:title="profile"
+        />
+
+    <item
+
+        android:id="@+id/navigation_template"
+        android:title="template"
+        />
+
+    <item
+
+        android:id="@+id/navigation_edit_portfolio"
+        android:title="edit_portfolio"
+        />
+
+
+
+    <item
+        android:id="@+id/navigation_email_signature"
+        android:title="email_signature"/>
+
+
+
+
+</menu>
