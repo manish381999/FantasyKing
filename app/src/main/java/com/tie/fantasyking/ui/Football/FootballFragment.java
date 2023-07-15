@@ -57,7 +57,7 @@ FragmentFootballBinding binding;
         // Inflate the layout for this fragment
         binding=FragmentFootballBinding.inflate(inflater, container, false);
 
-        requireActivity().setTitle("FantasyKing");
+
 
         Retrofit retrofit= ApiClient.getclient();
         apiInterface=retrofit.create(ApiInterface.class);
@@ -120,32 +120,6 @@ FragmentFootballBinding binding;
         sliderHandler.postDelayed(sliderRunnable,3000);
     }
 
-    private void getPromotionDetail() {
-        apiInterface.getPromotionList().enqueue(new Callback<Promotion_Model>() {
-            @Override
-            public void onResponse(Call<Promotion_Model> call, Response<Promotion_Model> response) {
-                if (response!=null){
-                    Promotion_Model  promotion_model= response.body();
-
-                    if (promotion_model.getStatus().equals("1")){
-
-                        setData(promotion_model.getData());
-
-//                        Toast.makeText(getContext(), promotion_model.getMessage(), Toast.LENGTH_SHORT).show();
-                    }else {
-                        Toast.makeText(getContext(), promotion_model.getMessage(), Toast.LENGTH_SHORT).show();
-
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Promotion_Model> call, Throwable t) {
-                Toast.makeText(getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                Log.e("fail",t.getLocalizedMessage());
-            }
-        });
-    }
 
 
 
@@ -177,10 +151,36 @@ FragmentFootballBinding binding;
             @Override
             public void onFailure(Call<MatchList_Model> call, Throwable t) {
                 Toast.makeText(getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                Log.e("fail",t.getLocalizedMessage());
             }
         });
     }
+
+    private void getPromotionDetail() {
+        apiInterface.getPromotionList().enqueue(new Callback<Promotion_Model>() {
+            @Override
+            public void onResponse(Call<Promotion_Model> call, Response<Promotion_Model> response) {
+                if (response!=null){
+                    Promotion_Model  promotion_model= response.body();
+
+                    if (promotion_model.getStatus().equals("1")){
+
+                        setData(promotion_model.getData());
+
+//                        Toast.makeText(getContext(), promotion_model.getMessage(), Toast.LENGTH_SHORT).show();
+                    }else {
+                        Toast.makeText(getContext(), promotion_model.getMessage(), Toast.LENGTH_SHORT).show();
+
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Promotion_Model> call, Throwable t) {
+                Toast.makeText(getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {

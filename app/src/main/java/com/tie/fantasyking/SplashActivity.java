@@ -14,8 +14,6 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import com.tie.fantasyking.databinding.ActivitySplashBinding;
 
 import java.util.Objects;
-
-@SuppressLint("CustomSplashScreen")
 public class SplashActivity extends AppCompatActivity {
     ActivitySplashBinding binding;
 

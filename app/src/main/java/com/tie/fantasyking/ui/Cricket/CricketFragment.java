@@ -19,7 +19,7 @@ import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Handler;
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -91,7 +91,7 @@ instagram.setOnClickListener(new View.OnClickListener() {
         twitter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String url = "https://instagram.com/maggiewala_iter?igshid=MzNlNGNkZWQ4Mg==";
+                String url = "https://twitter.com/manish827196201";
 
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(url));
@@ -167,12 +167,48 @@ binding.viewPagerImageSlider.registerOnPageChangeCallback(new ViewPager2.OnPageC
         sliderHandler.postDelayed(sliderRunnable,3000);
     }
 
+
+
+
+
+    @SuppressLint("NotifyDataSetChanged")
+    private void setRecyclerView(List<MatchList_Model.HeavyDetails> list){
+        binding.rvPreview.setHasFixedSize(true);
+       preview_adapter =new Cricket_Preview_Adapter(getContext(),list);
+        LinearLayoutManager layoutManager=new LinearLayoutManager(getContext());
+        binding.rvPreview.setLayoutManager(layoutManager);
+        binding.rvPreview.setAdapter(preview_adapter);
+        preview_adapter.notifyDataSetChanged();
+    }
+    private void getMatchDetail() {
+        apiInterface.getCricketMatchList().enqueue(new Callback<MatchList_Model>() {
+            @Override
+            public void onResponse(@NonNull Call<MatchList_Model> call, @NonNull Response<MatchList_Model> response) {
+                if (response!=null){
+                    MatchList_Model matchList_model= response.body();
+                    if (matchList_model.getStatus().equals("1")){
+                        //call recyclerView
+                        setRecyclerView(matchList_model.getData());
+                    }else {
+                        Toast.makeText(getContext(), matchList_model.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+                getPromotionDetail();
+            }
+
+            @Override
+            public void onFailure(Call<MatchList_Model> call, Throwable t) {
+                Toast.makeText(getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
     private void getPromotionDetail() {
         apiInterface.getPromotionList().enqueue(new Callback<Promotion_Model>() {
             @Override
-            public void onResponse(Call<Promotion_Model> call, Response<Promotion_Model> response) {
+            public void onResponse(@NonNull Call<Promotion_Model> call, @NonNull Response<Promotion_Model> response) {
                 if (response!=null){
-                  Promotion_Model  promotion_model= response.body();
+                    Promotion_Model  promotion_model= response.body();
 
                     if (promotion_model.getStatus().equals("1")){
 
@@ -189,42 +225,6 @@ binding.viewPagerImageSlider.registerOnPageChangeCallback(new ViewPager2.OnPageC
             @Override
             public void onFailure(Call<Promotion_Model> call, Throwable t) {
                 Toast.makeText(getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                Log.e("fail",t.getLocalizedMessage());
-            }
-        });
-    }
-
-
-
-    @SuppressLint("NotifyDataSetChanged")
-    private void setRecyclerView(List<MatchList_Model.HeavyDetails> list){
-        binding.rvPreview.setHasFixedSize(true);
-       preview_adapter =new Cricket_Preview_Adapter(getContext(),list);
-        LinearLayoutManager layoutManager=new LinearLayoutManager(getContext());
-        binding.rvPreview.setLayoutManager(layoutManager);
-        binding.rvPreview.setAdapter(preview_adapter);
-        preview_adapter.notifyDataSetChanged();
-    }
-    private void getMatchDetail() {
-        apiInterface.getCricketMatchList().enqueue(new Callback<MatchList_Model>() {
-            @Override
-            public void onResponse(Call<MatchList_Model> call, Response<MatchList_Model> response) {
-                if (response!=null){
-                    MatchList_Model matchList_model= response.body();
-                    if (matchList_model.getStatus().equals("1")){
-                        //call recyclerView
-                        setRecyclerView(matchList_model.getData());
-                    }else {
-                        Toast.makeText(getContext(), matchList_model.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                }
-                getPromotionDetail();
-            }
-
-            @Override
-            public void onFailure(Call<MatchList_Model> call, Throwable t) {
-                Toast.makeText(getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                Log.e("fail",t.getLocalizedMessage());
             }
         });
     }
