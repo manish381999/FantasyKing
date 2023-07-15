@@ -16,28 +16,36 @@
         android:theme="@style/Theme.FantasyKing">
         <activity
             android:name=".Setting.Help_Center_Activity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="locked"/>
         <activity
             android:name=".Setting.SettingActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="locked"/>
         <activity
             android:name=".Fantasy_TipsActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="locked"/>
         <activity
             android:name=".ui.Football.Football_Preview_Activity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="locked"/>
         <activity
             android:name=".ui.SportNews.CricketSeries_infoActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="locked"/>
         <activity
             android:name=".ui.SportNews.SportNewsActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="locked"/>
         <activity
             android:name=".ui.Cricket.Cricket_Preview_Activity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="locked"/>
         <activity
             android:name=".SplashActivity"
             android:exported="true"
+            android:screenOrientation="locked"
             android:theme="@style/Theme.Transparent">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,7 +55,10 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true"></activity>
+            android:exported="true"
+            android:screenOrientation="locked">
+
+        </activity>
 
         <service
             android:name=".Notification.FirebaseMessagingService"

@@ -91,7 +91,7 @@ instagram.setOnClickListener(new View.OnClickListener() {
         twitter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String url = "https://instagram.com/maggiewala_iter?igshid=MzNlNGNkZWQ4Mg==";
+                String url = "https://twitter.com/manish827196201";
 
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(url));

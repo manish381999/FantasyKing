@@ -58,10 +58,9 @@ ActivitySportNewsBinding binding;
                     CricketSeriesModel cricketSeriesModel=response.body();
                     if (cricketSeriesModel.getApikey().equals("32969b4d-c1a2-4edf-834f-715eabf450b7")){
 
-                        Toast.makeText(SportNewsActivity.this, "Data is Coming", Toast.LENGTH_SHORT).show();
                         setRecyclerView(cricketSeriesModel.getData());
                     }else {
-                        Toast.makeText(getApplicationContext(), cricketSeriesModel.getApikey(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), response.message(), Toast.LENGTH_SHORT).show();
                     }
                 }
             }
