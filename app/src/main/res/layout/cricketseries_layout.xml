@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/series"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="@dimen/dp_5_dsa"
+    android:elevation="@dimen/dp_5_dsa"
+    android:layout_margin="@dimen/dp_8_dsa"
+    app:cardCornerRadius="@dimen/dp_10_dsa"
+    android:background="@drawable/bag_cardview">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       >
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@drawable/splash_screen_background"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/series_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="center_horizontal"
+            android:text="Series Name"
+            android:textColor="@color/peach_orange"
+            android:textSize="@dimen/sp_18_dsa"
+            app:layout_constraintEnd_toEndOf="@id/view1"
+            app:layout_constraintStart_toStartOf="@id/view1"
+            app:layout_constraintBottom_toBottomOf="@id/view1"
+            app:layout_constraintTop_toTopOf="@id/view1" />
+
+        <TextView
+            android:id="@+id/tv_s_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_10_dsa"
+            android:layout_marginTop="@dimen/dp_10_dsa"
+            android:text="StartDate:"
+            android:textColor="@color/secondary_textColor"
+            android:textSize="@dimen/sp_16_dsa"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/series_name" />
+
+        <TextView
+            android:id="@+id/tv_start_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_8_dsa"
+            android:layout_marginTop="@dimen/dp_10_dsa"
+            android:text="2024-09-11"
+            android:textColor="@color/secondary_textColor"
+            android:textSize="@dimen/sp_16_dsa"
+            app:layout_constraintStart_toEndOf="@id/tv_s_date"
+            app:layout_constraintTop_toBottomOf="@id/series_name" />
+
+
+        <TextView
+            android:id="@+id/tv_e_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10_dsa"
+            android:layout_marginEnd="@dimen/dp_8_dsa"
+            android:text="EndDate:"
+            android:textColor="@color/secondary_textColor"
+            android:textSize="@dimen/sp_16_dsa"
+            app:layout_constraintEnd_toStartOf="@id/tv_end_date"
+            app:layout_constraintTop_toBottomOf="@id/series_name" />
+
+        <TextView
+            android:id="@+id/tv_end_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10_dsa"
+            android:layout_marginEnd="@dimen/dp_10_dsa"
+            android:text="Sep 29"
+            android:textColor="@color/secondary_textColor"
+            android:textSize="@dimen/sp_16_dsa"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/series_name" />
+
+        <TextView
+            android:id="@+id/odi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_10_dsa"
+            android:layout_marginTop="@dimen/dp_10_dsa"
+            android:text="Odi:"
+            android:textColor="@color/secondary_textColor"
+            android:textSize="@dimen/sp_16_dsa"
+            app:layout_constraintEnd_toStartOf="@+id/tv_odi"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_s_date" />
+
+        <TextView
+            android:id="@+id/tv_odi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_5_dsa"
+            android:layout_marginTop="@dimen/dp_10_dsa"
+            android:text="11"
+            android:textColor="@color/secondary_textColor"
+            android:textSize="@dimen/sp_16_dsa"
+            app:layout_constraintEnd_toStartOf="@+id/t20"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/odi"
+            app:layout_constraintTop_toBottomOf="@id/tv_start_date" />
+
+
+        <TextView
+            android:id="@+id/t20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_30_dsa"
+            android:layout_marginTop="@dimen/dp_10_dsa"
+            android:text="T20:"
+            android:textColor="@color/secondary_textColor"
+            android:textSize="@dimen/sp_16_dsa"
+            app:layout_constraintEnd_toStartOf="@+id/tv_t20"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tv_odi"
+            app:layout_constraintTop_toBottomOf="@id/tv_start_date" />
+
+        <TextView
+            android:id="@+id/tv_t20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_5_dsa"
+            android:layout_marginTop="@dimen/dp_10_dsa"
+            android:text="11"
+            android:textColor="@color/secondary_textColor"
+            android:textSize="@dimen/sp_16_dsa"
+            app:layout_constraintEnd_toStartOf="@+id/test"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/t20"
+            app:layout_constraintTop_toBottomOf="@id/tv_start_date" />
+
+
+        <TextView
+            android:id="@+id/test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_30_dsa"
+            android:layout_marginTop="@dimen/dp_10_dsa"
+            android:text="Test:"
+            android:textColor="@color/secondary_textColor"
+            android:textSize="@dimen/sp_16_dsa"
+            app:layout_constraintEnd_toStartOf="@+id/tv_test"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tv_t20"
+            app:layout_constraintTop_toBottomOf="@id/tv_e_date" />
+
+        <TextView
+            android:id="@+id/tv_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_5_dsa"
+            android:layout_marginTop="@dimen/dp_10_dsa"
+            android:layout_marginEnd="@dimen/dp_10_dsa"
+            android:text="11"
+            android:textColor="@color/secondary_textColor"
+            android:textSize="@dimen/sp_16_dsa"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/test"
+            app:layout_constraintTop_toBottomOf="@id/tv_end_date" />
+
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#F7F9FB"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_t20" />
+
+        <TextView
+            android:id="@+id/squads"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_10_dsa"
+            android:layout_marginTop="@dimen/dp_10_dsa"
+            android:text="Squads:"
+            android:textColor="@color/secondary_textColor"
+            android:textSize="@dimen/sp_16_dsa"
+            app:layout_constraintEnd_toStartOf="@+id/tv_squads"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="@id/view2" />
+
+        <TextView
+            android:id="@+id/tv_squads"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_5_dsa"
+            android:layout_marginTop="@dimen/dp_10_dsa"
+            android:text="11"
+            android:textColor="@color/secondary_textColor"
+            android:textSize="@dimen/sp_16_dsa"
+            app:layout_constraintEnd_toStartOf="@+id/matches"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/squads"
+            app:layout_constraintTop_toTopOf="@id/view2" />
+
+
+
+        <TextView
+            android:id="@+id/matches"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_30_dsa"
+            android:layout_marginTop="@dimen/dp_10_dsa"
+            android:text="Matches:"
+            android:textColor="@color/secondary_textColor"
+            android:textSize="@dimen/sp_16_dsa"
+            app:layout_constraintEnd_toStartOf="@+id/tv_matches"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tv_squads"
+            app:layout_constraintTop_toTopOf="@id/view2"  />
+
+        <TextView
+            android:id="@+id/tv_matches"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_5_dsa"
+            android:layout_marginTop="@dimen/dp_10_dsa"
+            android:layout_marginEnd="@dimen/dp_10_dsa"
+            android:text="11"
+            android:textColor="@color/secondary_textColor"
+            android:textSize="@dimen/sp_16_dsa"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/matches"
+            app:layout_constraintTop_toTopOf="@id/view2"  />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_sky_blue"
+    android:scrollbars="none"
+    tools:context=".Setting.SettingActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="@dimen/dp_20_dsa"
+            tools:ignore="UselessParent">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_pic"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@mipmap/ic_app"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Settings"
+                android:textColor="@color/black"
+                android:textSize="@dimen/sp_30_dsa"
+                android:layout_marginStart="@dimen/dp_20_dsa"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/roboto_medium"
+                />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/help_center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Help center"
+            android:textSize="@dimen/sp_20_dsa"
+            android:layout_margin="@dimen/dp_20_dsa"
+            android:textColor="@color/secondary_textColor"
+            app:drawableStartCompat="@drawable/ic_help_center"
+            android:fontFamily="@font/roboto_medium"
+            android:textStyle="bold"
+            android:drawablePadding="@dimen/dp_20_dsa"
+            />
+
+        <TextView
+            android:id="@+id/privacy_policy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Privacy policy"
+            android:textSize="@dimen/sp_20_dsa"
+            android:layout_margin="@dimen/dp_20_dsa"
+            android:textColor="@color/secondary_textColor"
+            app:drawableStartCompat="@drawable/ic_privacy_policy"
+            android:fontFamily="@font/roboto_medium"
+            android:textStyle="bold"
+            android:drawablePadding="@dimen/dp_20_dsa"
+            />
+
+
+
+        <TextView
+            android:id="@+id/terms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Term &amp; conditions"
+            android:textSize="@dimen/sp_20_dsa"
+            android:layout_margin="@dimen/dp_20_dsa"
+            android:textColor="@color/secondary_textColor"
+            android:fontFamily="@font/roboto_medium"
+            android:textStyle="bold"
+            android:drawablePadding="@dimen/dp_20_dsa"
+            app:drawableStartCompat="@drawable/ic_terms_and_conditions" />
+
+
+        <TextView
+            android:id="@+id/rateUs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rate us"
+            android:textSize="@dimen/sp_20_dsa"
+            android:layout_margin="@dimen/dp_20_dsa"
+            android:textColor="@color/secondary_textColor"
+            app:drawableStartCompat="@drawable/ic_baseline_star_rate"
+            android:fontFamily="@font/roboto_medium"
+            android:textStyle="bold"
+            android:drawablePadding="@dimen/dp_20_dsa"
+            />
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_18_dsa"
+            android:text="VERSION: 1.0"
+            android:layout_margin="@dimen/dp_20_dsa"
+            android:textColor="@color/secondary_textColor"
+            android:fontFamily="@font/roboto_medium"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:drawablePadding="@dimen/dp_20_dsa"
+            />
+    </LinearLayout>
+
+
+
+</ScrollView>

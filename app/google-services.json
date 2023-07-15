@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "773804651252",
+    "firebase_url": "https://fantasy-king-app-default-rtdb.firebaseio.com",
+    "project_id": "fantasy-king-app",
+    "storage_bucket": "fantasy-king-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:773804651252:android:bf920d2a74539cce4d24a1",
+        "android_client_info": {
+          "package_name": "com.tie.adminfantasyking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "773804651252-6dp08tjblamr7leo6mhdgbq463i4n48v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpwNZlPjH8E-HjYKA4TO6Gna-lVNRiipU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "773804651252-6dp08tjblamr7leo6mhdgbq463i4n48v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:773804651252:android:27efd03e23c394ab4d24a1",
+        "android_client_info": {
+          "package_name": "com.tie.fantasyking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "773804651252-6dp08tjblamr7leo6mhdgbq463i4n48v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpwNZlPjH8E-HjYKA4TO6Gna-lVNRiipU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "773804651252-6dp08tjblamr7leo6mhdgbq463i4n48v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

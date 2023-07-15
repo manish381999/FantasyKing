@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fantasy_TipsActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@drawable/splash_screen_background"
+            android:theme="?attr/actionBarTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Fantasy Tips &amp; Guide"
+                android:textColor="@color/peach_orange"
+                android:textSize="@dimen/sp_24_dsa"
+                android:textStyle="bold" />
+
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    app:layout_constraintTop_toBottomOf="@id/app_bar_layout"
+    app:layout_constraintBottom_toBottomOf="parent"
+    android:layout_marginBottom="@dimen/dp_20_dsa">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="@dimen/dp_10_dsa"
+       android:layout_marginHorizontal="@dimen/dp_15_dsa"
+       android:orientation="vertical">
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="How To Use Stats Sheet:"
+           android:textSize="@dimen/sp_18_dsa"
+           android:textStyle="bold"
+           android:textColor="@color/main_textColor"
+           android:fontFamily="@font/roboto_medium"/>
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/dp_10_dsa"
+           android:text="1) When a new Tournament is announced, you can use this Cheat Sheet to find out stats of unknown players. No need to waste your time on 20 min youtube videos."
+           android:textSize="@dimen/sp_16_dsa"
+           android:textColor="@color/secondary_textColor"/>
+
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/dp_10_dsa"
+           android:textSize="@dimen/sp_16_dsa"
+           android:text="2) Even if the tournament is in mid stage, you can find out which player is good as per stats and he has underperformed in the current tournament. He'll be less selected on Fantasy platforms and can act as a punt in your team."
+           android:textColor="@color/secondary_textColor"/>
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/dp_10_dsa"
+           android:textSize="@dimen/sp_16_dsa"
+           android:text="3) In the mid stage of a tournament, frequently new players are added into lineups who are usually less selected. You can check their stats here and decide whether to pick them or not"
+           android:textColor="@color/secondary_textColor"/>
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/dp_10_dsa"
+           android:textSize="@dimen/sp_16_dsa"
+           android:text="4) In the mid stage of a tournament, some players who are not that good as per the stats are 80-90% selected just because they performed good in last match, so you can drop them and select your punt players as per point number 2"
+           android:textColor="@color/secondary_textColor"/>
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/dp_15_dsa"
+           android:text="Fantasy Tips and Tricks"
+           android:textSize="@dimen/sp_18_dsa"
+           android:textStyle="bold"
+           android:textColor="@color/main_textColor"
+           android:fontFamily="@font/roboto_medium"/>
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/dp_10_dsa"
+           android:textSize="@dimen/sp_16_dsa"
+           android:text="Dream11 is a fantasy game app where you can play cricket and other sports to get fame and earn money."
+           android:textColor="@color/secondary_textColor"/>
+
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/dp_10_dsa"
+           android:textSize="@dimen/sp_16_dsa"
+           android:text="It has partnerships with IPL, ICC (International Cricket Council), Pro Kabaddi League, International Hockey Federation, WBBL and BBL etc."
+           android:textColor="@color/secondary_textColor"/>
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/dp_10_dsa"
+           android:textSize="@dimen/sp_16_dsa"
+           android:text="There are many Dream11 tips and tricks which you can follow to earn some extra bucks. Create your virtual team by taking the best players around the world and earn points on their performance."
+           android:textColor="@color/secondary_textColor"/>
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/dp_10_dsa"
+           android:textSize="@dimen/sp_16_dsa"
+           android:text="Some of the ways to earn money on Dream11 are listed below."
+           android:textColor="@color/secondary_textColor"/>
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/dp_15_dsa"
+           android:textSize="@dimen/sp_18_dsa"
+           android:text="Importance of the Toss"
+           android:textStyle="bold"
+           android:textColor="@color/main_textColor"
+           android:fontFamily="@font/roboto_medium"/>
+
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/dp_10_dsa"
+           android:textSize="@dimen/sp_16_dsa"
+           android:text="Many matches on Dream11 are unmatched based upon the strengths, so it will be good if you focus on winning the toss and choose to bat first. If you do not get batting first, chasing a big target afterwards becomes a bit difficult for weaker teams."
+           android:textColor="@color/secondary_textColor"/>
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/dp_10_dsa"
+           android:textSize="@dimen/sp_16_dsa"
+           android:text="The team who wins the toss has the right to choose batting or bowling according to their wish. So, this becomes an added advantage for the team winning the toss as the team get the chance to decide what they can start with the best."
+           android:textColor="@color/secondary_textColor"/>
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/dp_15_dsa"
+           android:textSize="@dimen/sp_18_dsa"
+           android:text="Play smalls leagues instead of grand leagues"
+           android:textStyle="bold"
+           android:textColor="@color/main_textColor"
+           android:fontFamily="@font/roboto_medium"/>
+
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/dp_10_dsa"
+           android:textSize="@dimen/sp_16_dsa"
+           android:text="If you take part in grand leagues which are played by thousands or lakhs contesters, there is a less chance of winning. You will keep losing your money, and in frustration, you will lose the perfect mindset for choosing the best team for yourself."
+           android:textColor="@color/secondary_textColor"/>
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/dp_10_dsa"
+           android:textSize="@dimen/sp_16_dsa"
+           android:text="So, try your luck in playing small leagues, where there will be a higher chance of winning and earning money."
+           android:textColor="@color/secondary_textColor"/>
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/dp_15_dsa"
+           android:textSize="@dimen/sp_18_dsa"
+           android:textStyle="bold"
+           android:text="Understand the points system"
+           android:textColor="@color/main_textColor"
+           android:fontFamily="@font/roboto_medium"/>
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/dp_10_dsa"
+           android:text="Every fantasy sports app has a different points system. Many fantasy sports apps give a balanced points system between batting, bowling and fielding."
+           android:textSize="@dimen/sp_16_dsa"
+           android:textColor="@color/secondary_textColor"/>
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/dp_10_dsa"
+           android:text="Many online gaming apps give more points to batting points such as runs, the fifties etc. whereas some offer more weightage to bowling points such as wickets, maiden overs, etc."
+           android:textSize="@dimen/sp_16_dsa"
+           android:textColor="@color/secondary_textColor"/>
+
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/dp_15_dsa"
+           android:textSize="@dimen/sp_18_dsa"
+           android:textStyle="bold"
+           android:text="Play Selected Matches"
+           android:textColor="@color/main_textColor"
+           android:fontFamily="@font/roboto_medium"/>
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/dp_10_dsa"
+           android:text="One of the biggest mistakes fantasy players make is that they play all the matches to try earn more money. This is even if they have zero knowledge about the matches, resulting in them losing their money. You should avoid doing this if you want to earn money from fantasy sports."
+           android:textSize="@dimen/sp_16_dsa"
+           android:textColor="@color/secondary_textColor"/>
+
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/dp_15_dsa"
+           android:textSize="@dimen/sp_18_dsa"
+           android:textStyle="bold"
+           android:text="Dream11 Fantasy Cricket Tips and Tricks"
+           android:textColor="@color/main_textColor"
+           android:fontFamily="@font/roboto_medium"/>
+
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/dp_10_dsa"
+           android:text=".Join Contests with fewer Members: If you join a contest with more than 10,000 members, the chances of ranking in the top 10 or 20 are very less. To win more money join small contests with 10, 20, or 30 members."
+           android:textSize="@dimen/sp_16_dsa"
+           android:textColor="@color/secondary_textColor"/>
+
+
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/dp_10_dsa"
+           android:textSize="@dimen/sp_16_dsa"
+           android:text="•Understand the points system: Every fantasy cricket website has a different points structure. The point structure decides the best balance of your team. The players are given points for runs, fifties, wickets, catches, etc."
+           android:textColor="@color/secondary_textColor"/>
+
+
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/dp_10_dsa"
+           android:textSize="@dimen/sp_16_dsa"
+           android:text=".Select your Captain and Vice-captain wisely: The most crucial part of your team is your captain and vice-captain. You can make any players as captain and vice-captain. Select these two players is crucial to your winning chances because you can 2X points for captain and 1.5X points for vice-captain."
+           android:textColor="@color/secondary_textColor"/>
+
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/dp_10_dsa"
+           android:textSize="@dimen/sp_16_dsa"
+           android:text="•Refer &amp; Earn: Most Cricket fantasy apps have a referral program. Share your referral code/link with friends to earn a referral bonus. The money can be used to participate in cash contests. This is the best way to earn with fantasy cricket apps."
+           android:textColor="@color/secondary_textColor"/>
+
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/dp_10_dsa"
+           android:text=".Sign-up Bonus: Most fantasy websites also provide signup bonus to users. The point is to help users get started. You can use the earned points to play in cricket leagues and win real cash."
+           android:textSize="@dimen/sp_16_dsa"
+           android:textColor="@color/secondary_textColor"/>
+
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/dp_10_dsa"
+           android:textSize="@dimen/sp_16_dsa"
+           android:text=".Check Player Performance: Analyse the recent performance of players. Select a player on the basis of reputation is not smart. The current form is more important. Note down the players who have performed in the recent matches.
+"
+           android:textColor="@color/secondary_textColor"/>
+
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/dp_10_dsa"
+           android:textSize="@dimen/sp_16_dsa"
+           android:text="•Deposit money offers: You need to deposit Money to join contests. Check the ongoing offers and coupons that give the most value for money. These coupons give you additional cash bonus on the money deposited to your account."
+           android:textColor="@color/secondary_textColor"/>
+
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/dp_15_dsa"
+           android:text="For more Tips Follows our Team Guide &amp; Cheat Sheets."
+           android:textSize="@dimen/sp_18_dsa"
+           android:textStyle="bold"
+           android:textColor="@color/main_textColor"
+           android:fontFamily="@font/roboto_medium"/>
+
+
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="@dimen/dp_10_dsa"
+           android:textSize="@dimen/sp_16_dsa"
+           android:text="Best of Luck."
+           android:textColor="@color/secondary_textColor"/>
+
+   </LinearLayout>
+    </LinearLayout>
+</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
