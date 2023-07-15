@@ -16,4 +16,72 @@
         android:scaleType="centerCrop"
         android:contentDescription="@null" />
 
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintTop_toBottomOf="@id/cover_pic"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Connect with us"
+        android:textColor="@color/secondary_textColor"
+        android:layout_gravity="center_horizontal"
+        android:textSize="@dimen/sp_18_dsa"
+        app:drawableStartCompat="@drawable/ic_connect_"
+        android:drawablePadding="@dimen/dp_10_dsa"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="3"
+        android:layout_marginTop="@dimen/dp_8_dsa"
+        android:orientation="horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/instagram"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_60_dsa"
+            android:src="@drawable/ic_instagram"
+            android:padding="@dimen/dp_10_dsa"
+            android:layout_weight="1"/>
+
+        <View
+            android:layout_width="@dimen/dp_1_dsa"
+            android:layout_height="@dimen/dp_40_dsa"
+            android:layout_gravity="center_vertical"
+            android:background="@color/light_gray"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/twitter"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_60_dsa"
+            android:src="@drawable/ic_twitter"
+            android:padding="@dimen/dp_10_dsa"
+            android:layout_weight="1"/>
+
+        <View
+            android:layout_width="@dimen/dp_1_dsa"
+            android:layout_height="@dimen/dp_40_dsa"
+            android:layout_gravity="center_vertical"
+            android:background="@color/light_gray"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/telegram"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dp_60_dsa"
+            android:src="@drawable/ic_telegram"
+            android:padding="@dimen/dp_10_dsa"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_1_dsa"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="@dimen/dp_10_dsa"
+        android:background="@color/light_gray"/>
+</LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -20,4 +20,13 @@
         <item name="spinBars">true</item>
         <item name="color">@color/peach_orange</item>
     </style>
+
+    <style name="Theme.Transparent" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryDark">@color/purple_700</item>
+        <item name="colorAccent">@color/white</item>
+    </style>
+
+
 </resources>

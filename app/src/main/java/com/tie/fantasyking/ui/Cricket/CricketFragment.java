@@ -1,6 +1,8 @@
 package com.tie.fantasyking.ui.Cricket;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,7 +13,12 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.CompositePageTransformer;
+import androidx.viewpager2.widget.MarginPageTransformer;
+import androidx.viewpager2.widget.ViewPager2;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -22,10 +29,13 @@ import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
 import com.tie.fantasyking.ApiClient.ApiClient;
 import com.tie.fantasyking.ApiClient.ApiInterface;
+import com.tie.fantasyking.Fantasy_TipsActivity;
 import com.tie.fantasyking.R;
+import com.tie.fantasyking.Setting.SettingActivity;
+import com.tie.fantasyking.ui.SportNews.SportNewsActivity;
 import com.tie.fantasyking.databinding.FragmentCricketBinding;
-import com.tie.fantasyking.promotion.PromotionAdapter;
-import com.tie.fantasyking.promotion.Promotion_Model;
+import com.tie.fantasyking.ui.promotion.Promotion_Model;
+import com.tie.fantasyking.ui.promotion.SliderAdapter;
 
 import java.util.List;
 
@@ -37,12 +47,16 @@ import retrofit2.Retrofit;
 
 public class CricketFragment extends Fragment implements NavigationView.OnNavigationItemSelectedListener {
 
-  FragmentCricketBinding  binding;
+  FragmentCricketBinding binding;
 
   Cricket_Preview_Adapter preview_adapter;
-  PromotionAdapter promotionAdapter;
 
+  private Handler sliderHandler =new Handler();
   ApiInterface apiInterface;
+  View instagram;
+    View twitter;
+    View telegram;
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -54,19 +68,105 @@ public class CricketFragment extends Fragment implements NavigationView.OnNaviga
 
         getMatchDetail();
 
+        NavigationView navigationView = binding.navigationDrawer;
 
+
+
+        View headerView = navigationView.getHeaderView(0);
+        instagram = headerView.findViewById(R.id.instagram);
+        twitter = headerView.findViewById(R.id.twitter);
+        telegram = headerView.findViewById(R.id.telegram);
+
+instagram.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        String url = "https://instagram.com/android_withfun?igshid=ZDc4ODBmNjlmNQ==";
+
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url));
+        startActivity(i);
+    }
+});
+
+        twitter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "https://instagram.com/maggiewala_iter?igshid=MzNlNGNkZWQ4Mg==";
+
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+            }
+        });
+
+        telegram.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = "https://t.me/+KNr_NQxqKTI0ZGZl";
+
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
+            }
+        });
 
         return binding.getRoot();
     }
 
+
+
     private void setData(List<Promotion_Model.LightDetails> list) {
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
-        promotionAdapter=new PromotionAdapter(getContext(),list);
-        binding.rvImageSlider.setAdapter(promotionAdapter);
-        binding.rvImageSlider.setLayoutManager(linearLayoutManager);
+        binding.viewPagerImageSlider.setAdapter(new SliderAdapter(getContext(),list,binding.viewPagerImageSlider));
+
+        binding.viewPagerImageSlider.setClipToPadding(false);
+        binding.viewPagerImageSlider.setClipChildren(false);
+        binding.viewPagerImageSlider.setOffscreenPageLimit(3);
+        binding.viewPagerImageSlider.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+
+        CompositePageTransformer compositePageTransformer=new CompositePageTransformer();
+        compositePageTransformer.addTransformer(new MarginPageTransformer(40));
+        compositePageTransformer.addTransformer(new ViewPager2.PageTransformer() {
+            @Override
+            public void transformPage(@NonNull View page, float position) {
+                float r= 1- Math.abs(position);
+                page.setScaleY(0.85f + r*0.15f);
+            }
+        });
+binding.viewPagerImageSlider.setPageTransformer(compositePageTransformer);
+
+binding.viewPagerImageSlider.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+    @Override
+    public void onPageSelected(int position) {
+        super.onPageSelected(position);
+        sliderHandler.removeCallbacks(sliderRunnable);
+        sliderHandler.postDelayed(sliderRunnable,3000); //slide duration 3 second
+    }
+});
+
+
 
 
     }
+
+    private Runnable sliderRunnable=new Runnable() {
+        @Override
+        public void run() {
+         binding.viewPagerImageSlider.setCurrentItem(binding.viewPagerImageSlider.getCurrentItem()+1);
+        }
+    };
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        sliderHandler.removeCallbacks(sliderRunnable);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        sliderHandler.postDelayed(sliderRunnable,3000);
+    }
+
     private void getPromotionDetail() {
         apiInterface.getPromotionList().enqueue(new Callback<Promotion_Model>() {
             @Override
@@ -78,7 +178,7 @@ public class CricketFragment extends Fragment implements NavigationView.OnNaviga
 
                         setData(promotion_model.getData());
 
-                        Toast.makeText(getContext(), promotion_model.getMessage(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getContext(), promotion_model.getMessage(), Toast.LENGTH_SHORT).show();
                     }else {
                         Toast.makeText(getContext(), promotion_model.getMessage(), Toast.LENGTH_SHORT).show();
 
@@ -106,7 +206,7 @@ public class CricketFragment extends Fragment implements NavigationView.OnNaviga
         preview_adapter.notifyDataSetChanged();
     }
     private void getMatchDetail() {
-        apiInterface.getMatchList().enqueue(new Callback<MatchList_Model>() {
+        apiInterface.getCricketMatchList().enqueue(new Callback<MatchList_Model>() {
             @Override
             public void onResponse(Call<MatchList_Model> call, Response<MatchList_Model> response) {
                 if (response!=null){
@@ -147,21 +247,28 @@ public class CricketFragment extends Fragment implements NavigationView.OnNaviga
     @SuppressLint("NonConstantResourceId")
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
-            case R.id.navigation_profile:
+            case R.id.navigation_sportNews:
+               startActivity(new Intent(getActivity(),  SportNewsActivity.class));
+                break;
+
+            case R.id.navigation_liveScore:
                 Toast.makeText(getContext(), "Coming Soon", Toast.LENGTH_SHORT).show();
                 break;
 
-            case R.id.navigation_template:
+            case R.id.navigation_liveStreaming:
+                Toast.makeText(getContext(), "Coming Soon", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.navigation_FantasyTips:
+               startActivity(new Intent(getActivity(), Fantasy_TipsActivity.class));
+                break;
+            case R.id.navigation_setting:
+                startActivity(new Intent(getActivity(), SettingActivity.class));
+                break;
+
+            case R.id.navigation_share:
                 Toast.makeText(getContext(), "Coming Soon", Toast.LENGTH_SHORT).show();
                 break;
 
-            case R.id.navigation_edit_portfolio:
-                Toast.makeText(getContext(), "Coming Soon", Toast.LENGTH_SHORT).show();
-                break;
-
-            case R.id.navigation_email_signature:
-                Toast.makeText(getContext(), "Coming Soon", Toast.LENGTH_SHORT).show();
-                break;
 
         }
         return true;

@@ -17,6 +17,7 @@ import android.view.View;
 
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.tie.fantasyking.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {

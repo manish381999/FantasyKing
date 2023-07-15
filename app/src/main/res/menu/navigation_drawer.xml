@@ -1,30 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-
-        android:id="@+id/navigation_profile"
-        android:title="profile"
-        />
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group android:checkableBehavior="all">
 
     <item
-
-        android:id="@+id/navigation_template"
-        android:title="template"
-        />
-
-    <item
-
-        android:id="@+id/navigation_edit_portfolio"
-        android:title="edit_portfolio"
+        android:id="@+id/navigation_sportNews"
+        android:title="Sports News"
+        android:icon="@drawable/ic_news"
         />
 
 
+    <item
+        android:id="@+id/navigation_liveScore"
+        android:title="Live Score"
+        android:icon="@drawable/ic_live_score"
+        />
+
 
     <item
-        android:id="@+id/navigation_email_signature"
-        android:title="email_signature"/>
+        android:id="@+id/navigation_liveStreaming"
+        android:title="Live Streaming"
+        android:icon="@drawable/ic_radio"
+
+        />
+
+        <item
+            android:id="@+id/navigation_FantasyTips"
+            android:title="Fantasy Tips"
+            android:icon="@drawable/ic_tips"
+
+            />
+    </group>
+
+    <group
+        android:checkableBehavior="single">
+
+         <item android:title="Fantasy King">
+            <menu>
+
+                <item
+                    android:id="@+id/navigation_setting"
+                    android:title="Settings"
+                    android:icon="@drawable/ic_settings"/>
+
+
+                <item
+                    android:id="@+id/navigation_share"
+                    android:title="Share App"
+                    android:icon="@drawable/ic_baseline_share_24"/>
 
 
 
+            </menu>
+
+
+
+        </item>
+    </group>
 
 </menu>

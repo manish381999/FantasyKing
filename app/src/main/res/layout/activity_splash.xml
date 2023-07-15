@@ -6,19 +6,33 @@
     android:layout_height="match_parent"
     android:background="@drawable/splash_screen_background"
     tools:context=".SplashActivity">
-    
-    <ImageView
+
+
+    <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/iv_app_logo"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:src="@drawable/app_logo"
+        android:layout_width="@dimen/dp_300_dsa"
+        android:layout_height="@dimen/dp_300_dsa"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:lottie_rawRes="@raw/app_animation"
+        android:elevation="@dimen/dp_40_dsa"
         app:layout_constraintVertical_bias="0.3"/>
 
+<!--    <ImageView-->
+<!--        android:id="@+id/iv_app_logo"-->
+<!--        android:layout_width="120dp"-->
+<!--        android:layout_height="120dp"-->
+<!--        android:src="@drawable/app_logo"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.3"/>-->
+
     <LinearLayout
+        android:id="@+id/linear_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"

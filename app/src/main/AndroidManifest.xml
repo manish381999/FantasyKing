@@ -1,22 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.tie.fantasyking">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_app"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_app_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FantasyKing">
+        <activity
+            android:name=".Setting.Help_Center_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Setting.SettingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Fantasy_TipsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.Football.Football_Preview_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.SportNews.CricketSeries_infoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.SportNews.SportNewsActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.Cricket.Cricket_Preview_Activity"
             android:exported="false" />
         <activity
             android:name=".SplashActivity"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.Transparent">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,6 +49,15 @@
             android:name=".MainActivity"
             android:exported="true"></activity>
 
+        <service
+            android:name=".Notification.FirebaseMessagingService"
+            android:exported="true"
+            android:permission="TODO"
+            tools:ignore="ExportedService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
