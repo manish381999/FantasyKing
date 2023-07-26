@@ -266,7 +266,7 @@ binding.viewPagerImageSlider.registerOnPageChangeCallback(new ViewPager2.OnPageC
                 break;
 
             case R.id.navigation_share:
-                Toast.makeText(getContext(), "Coming Soon", Toast.LENGTH_SHORT).show();
+               shareApp();
                 break;
 
 
@@ -274,5 +274,21 @@ binding.viewPagerImageSlider.registerOnPageChangeCallback(new ViewPager2.OnPageC
         return true;
     }
 
+    private void shareApp() {
+        final String appPakageName= getActivity().getPackageName();
+//        Intent sendIntent =new Intent();
+//        sendIntent.setAction(Intent.ACTION_SEND);
+//        sendIntent.putExtra(Intent.EXTRA_TEXT, "Download: https://play.google.com/store/apps/details?id="+ appPakageName);
+//        sendIntent.setType("text/plane");
+//        getActivity().startActivity(sendIntent);
+
+        Intent intent=new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Share The App");
+        intent.putExtra(Intent.EXTRA_TEXT, "Play like a pro with our Fantasy Prediction app: https://play.google.com/store/apps/details?id="+ appPakageName);
+        startActivity(Intent.createChooser(intent,"Share App Via..."));
 
     }
+
+
+}

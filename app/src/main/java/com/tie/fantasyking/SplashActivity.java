@@ -3,7 +3,7 @@ package com.tie.fantasyking;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
-import android.annotation.SuppressLint;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,7 +13,7 @@ import android.view.animation.AnimationUtils;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.tie.fantasyking.databinding.ActivitySplashBinding;
 
-import java.util.Objects;
+
 public class SplashActivity extends AppCompatActivity {
     ActivitySplashBinding binding;
 
@@ -47,7 +47,7 @@ public class SplashActivity extends AppCompatActivity {
                 finish();
 
             }
-        }, 5000);
+        }, 3500);
 
 
 

@@ -52,7 +52,11 @@ ActivitySettingBinding binding;
         binding.rateUs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(SettingActivity.this, "Coming Soon!", Toast.LENGTH_SHORT).show();
+                String url_terms= "https://play.google.com/store/apps/details?id=com.tie.fantasyking";
+                Intent terms = new Intent(Intent.ACTION_VIEW);
+                terms.setData(Uri.parse(url_terms));
+                startActivity(terms);
+
             }
         });
     }

@@ -38,9 +38,9 @@
 
         <TextView
             android:id="@+id/text1"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
             android:layout_marginHorizontal="@dimen/dp_10_dsa"
             android:layout_marginTop="@dimen/dp_30_dsa"
             android:padding="@dimen/dp_5_dsa"
@@ -54,17 +54,17 @@
 
         <TextView
             android:id="@+id/text2"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
             android:layout_marginHorizontal="@dimen/dp_10_dsa"
             android:padding="@dimen/dp_5_dsa"
             android:text="@string/back_to_you_as_soon_as_possible"
             android:textColor="@color/white"
             android:textSize="@dimen/sp_19_dsa"
             app:layout_constraintTop_toBottomOf="@id/text1"
-            app:layout_constraintStart_toStartOf="@id/text1"
-            app:layout_constraintEnd_toEndOf="@id/text1"
+            app:layout_constraintStart_toStartOf="@id/constraint_layout"
+            app:layout_constraintEnd_toEndOf="@id/constraint_layout"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

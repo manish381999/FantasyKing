@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Fantasy King</string>
-    <string name="team_hai_toh">Team Hai Toh</string>
-    <string name="mazaa_hai">Mazaa Hai</string>
+    <string name="team_hai_toh">Get Ready for the</string>
+    <string name="mazaa_hai">Fantasy Battles</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="cricket">Cricket</string>
     <string name="football">Football</string>
