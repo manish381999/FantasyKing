@@ -2,6 +2,7 @@ package com.tie.fantasyking.ui.Cricket;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +15,12 @@ import com.bumptech.glide.Glide;
 import com.tie.fantasyking.R;
 import com.tie.fantasyking.databinding.PreviewItemLayoutBinding;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class Cricket_Preview_Adapter extends RecyclerView.Adapter<Cricket_Preview_Adapter.CricketViewHolder>{
     Context context;
@@ -47,10 +53,13 @@ MatchList_Model.HeavyDetails details=list.get(position);
         holder.binding.tvTournamentName.setText(details.getTournament());
         holder.binding.tvTeamAName.setText(details.getTeam_a());
         holder.binding.tvTeamBName.setText(details.getTeam_b());
-        holder.binding.tvDate.setText(details.getDate());
-        holder.binding.tvTime.setText(details.getTime());
+//        holder.binding.tvDate.setText(details.getDate());
+//        holder.binding.tvTime.setText(details.getTime());
         holder.binding.tvMatchName.setText(details.getName());
         holder.binding.tvTeamStatus.setText(details.getTeam_status());
+
+        holder.bindData(details);
+
 
         holder.binding.match.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,16 +89,96 @@ MatchList_Model.HeavyDetails details=list.get(position);
 
     }
 
+
+
     @Override
     public int getItemCount() {
         return list.size();
     }
 
+
+
     public static class CricketViewHolder extends RecyclerView.ViewHolder{
 PreviewItemLayoutBinding binding;
+        private CountDownTimer countDownTimer;
+
         public CricketViewHolder(@NonNull View itemView) {
             super(itemView);
             binding=PreviewItemLayoutBinding.bind(itemView);
+
+        }
+
+
+            public void bindData(MatchList_Model.HeavyDetails event) {
+          binding.tvDate.setText(event.getTime());
+
+                long eventStartTimeInMillis = calculateStartTimeInMillis(event);
+
+                if (countDownTimer != null) {
+                    countDownTimer.cancel(); // Cancel any previous countdown timers to avoid conflicts
+                }
+
+                // Start the countdown timer
+                countDownTimer = new CountDownTimer(eventStartTimeInMillis - System.currentTimeMillis(), 1000) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
+                        // Update the countdownTextView with the remaining time
+                        String timeRemaining = formatTime(millisUntilFinished);
+                        binding.tvTime.setText(timeRemaining);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        binding.tvTime.setText("0s"); // Update UI when the timer finishes
+                    }
+                }.start();
+            }
+
+            // Helper method to calculate the start time of the event relative to the current time
+            private long calculateStartTimeInMillis(MatchList_Model.HeavyDetails event) {
+                String eventTime = event.getTime(); // Get the event time in "hh:mm a" format
+
+                SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a", Locale.getDefault());
+                try {
+                    Date eventDate = sdf.parse(eventTime);
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTime(eventDate);
+
+                    // Set the event hour and minute from the parsed date
+                    int eventHour = calendar.get(Calendar.HOUR_OF_DAY);
+                    int eventMinute = calendar.get(Calendar.MINUTE);
+
+                    // Set the event time on the current day
+                    Calendar eventTimeCalendar = Calendar.getInstance();
+                    eventTimeCalendar.set(Calendar.HOUR_OF_DAY, eventHour);
+                    eventTimeCalendar.set(Calendar.MINUTE, eventMinute);
+                    eventTimeCalendar.set(Calendar.SECOND, 0);
+
+                    long eventStartTimeInMillis = eventTimeCalendar.getTimeInMillis();
+ //                   long currentTimeInMillis = System.currentTimeMillis();
+
+//                    if (eventStartTimeInMillis <= currentTimeInMillis) {
+//                        // If the event time has already passed for today, add 1 day to the event start time
+//                        eventStartTimeInMillis += 24 * 60 * 60 * 1000;
+//                    }
+
+                    return eventStartTimeInMillis;
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                return 0;
+            }
+
+            // Helper method to format the time in HH:MM:SS format
+            private String formatTime(long millis) {
+                long seconds = millis / 1000;
+                long minutes = seconds / 60;
+                long hours = minutes / 60;
+                return String.format("%02d:%02d:%02d", hours, minutes % 60, seconds % 60);
         }
     }
+
+
+
 }

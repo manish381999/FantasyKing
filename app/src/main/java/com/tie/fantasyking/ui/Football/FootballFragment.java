@@ -35,7 +35,13 @@ import com.tie.fantasyking.ui.promotion.Promotion_Model;
 import com.tie.fantasyking.ui.promotion.SliderAdapter;
 import com.tie.fantasyking.ui.Cricket.MatchList_Model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -45,7 +51,7 @@ import retrofit2.Retrofit;
 public class FootballFragment extends Fragment  implements NavigationView.OnNavigationItemSelectedListener{
 FragmentFootballBinding binding;
 
-    Football_Preview_Adapter preview_adapter;
+    Football_Preview_Adapter football_preview_adapter;
 
     private Handler sliderHandler =new Handler();
 
@@ -126,12 +132,17 @@ FragmentFootballBinding binding;
     @SuppressLint("NotifyDataSetChanged")
     private void setRecyclerView(List<MatchList_Model.HeavyDetails> list){
         binding.rvPreview.setHasFixedSize(true);
-        preview_adapter =new Football_Preview_Adapter(getContext(),list);
+        football_preview_adapter =new Football_Preview_Adapter(getContext(),list);
         LinearLayoutManager layoutManager=new LinearLayoutManager(getContext());
         binding.rvPreview.setLayoutManager(layoutManager);
-        binding.rvPreview.setAdapter(preview_adapter);
-        preview_adapter.notifyDataSetChanged();
+        binding.rvPreview.setAdapter(football_preview_adapter);
+        football_preview_adapter.notifyDataSetChanged();
     }
+
+
+
+
+
     private void getMatchDetail() {
         apiInterface.getFootballMatchList().enqueue(new Callback<MatchList_Model>() {
             @Override

@@ -37,7 +37,13 @@ import com.tie.fantasyking.databinding.FragmentCricketBinding;
 import com.tie.fantasyking.ui.promotion.Promotion_Model;
 import com.tie.fantasyking.ui.promotion.SliderAdapter;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -49,7 +55,7 @@ public class CricketFragment extends Fragment implements NavigationView.OnNaviga
 
   FragmentCricketBinding binding;
 
-  Cricket_Preview_Adapter preview_adapter;
+  Cricket_Preview_Adapter cricket_preview_adapter;
 
   private Handler sliderHandler =new Handler();
   ApiInterface apiInterface;
@@ -174,12 +180,20 @@ binding.viewPagerImageSlider.registerOnPageChangeCallback(new ViewPager2.OnPageC
     @SuppressLint("NotifyDataSetChanged")
     private void setRecyclerView(List<MatchList_Model.HeavyDetails> list){
         binding.rvPreview.setHasFixedSize(true);
-       preview_adapter =new Cricket_Preview_Adapter(getContext(),list);
+       cricket_preview_adapter =new Cricket_Preview_Adapter(getContext(),list);
         LinearLayoutManager layoutManager=new LinearLayoutManager(getContext());
         binding.rvPreview.setLayoutManager(layoutManager);
-        binding.rvPreview.setAdapter(preview_adapter);
-        preview_adapter.notifyDataSetChanged();
+        binding.rvPreview.setAdapter(cricket_preview_adapter);
+        cricket_preview_adapter.notifyDataSetChanged();
     }
+
+
+
+
+
+
+
+
     private void getMatchDetail() {
         apiInterface.getCricketMatchList().enqueue(new Callback<MatchList_Model>() {
             @Override
@@ -276,11 +290,6 @@ binding.viewPagerImageSlider.registerOnPageChangeCallback(new ViewPager2.OnPageC
 
     private void shareApp() {
         final String appPakageName= getActivity().getPackageName();
-//        Intent sendIntent =new Intent();
-//        sendIntent.setAction(Intent.ACTION_SEND);
-//        sendIntent.putExtra(Intent.EXTRA_TEXT, "Download: https://play.google.com/store/apps/details?id="+ appPakageName);
-//        sendIntent.setType("text/plane");
-//        getActivity().startActivity(sendIntent);
 
         Intent intent=new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
