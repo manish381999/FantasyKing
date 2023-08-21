@@ -126,6 +126,33 @@
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_view_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toBottomOf="@id/app_bar_layout">
+
+            <LinearLayout
+                android:id="@+id/shimmer_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+               <include layout="@layout/viewpager_shimmer"/>
+                <include layout="@layout/main_shimmer" />
+                <include layout="@layout/main_shimmer" />
+                <include layout="@layout/main_shimmer" />
+                <include layout="@layout/main_shimmer" />
+
+
+
+
+            </LinearLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -145,5 +172,5 @@
 
     </com.google.android.material.navigation.NavigationView>
 
-<!--    </androidx.drawerlayout.widget.DrawerLayout>-->
+
 </androidx.drawerlayout.widget.DrawerLayout>

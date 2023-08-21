@@ -36,4 +36,9 @@
     <string name="name">*Name</string>
     <string name="message">*Message</string>
     <string name="email">*Email</string>
+    <string name="version_1_4">VERSION: 1.4</string>
+    <string name="term_amp_conditions"><![CDATA[Term & conditions]]></string>
+    <string name="privacy_policy">Privacy policy</string>
+    <string name="help_center">Help center</string>
+    <string name="settings">Settings</string>
 </resources>

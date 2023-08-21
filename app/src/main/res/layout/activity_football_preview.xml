@@ -9,7 +9,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -367,7 +368,7 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
-                    android:layout_height="400dp"
+                    android:layout_height="@dimen/dp_450_dsa"
                     android:layout_weight="1"
                     app:cardElevation="5dp"
                     android:layout_marginHorizontal="7dp"
@@ -413,7 +414,7 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="0dp"
-                    android:layout_height="400dp"
+                    android:layout_height="@dimen/dp_450_dsa"
                     android:layout_weight="1"
                     app:cardElevation="5dp"
                     app:cardCornerRadius="10dp">
@@ -583,7 +584,15 @@
                         android:src="@drawable/place_holder"
                         tools:ignore="ContentDescription" />
 
-
+                    <com.google.android.gms.ads.AdView
+                        xmlns:ads="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/adView"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/dp_8_dsa"
+                        android:layout_height="wrap_content"
+                        ads:adSize="BANNER"
+                        ads:adUnitId="ca-app-pub-3328184208021419/8879852247">
+                    </com.google.android.gms.ads.AdView>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 

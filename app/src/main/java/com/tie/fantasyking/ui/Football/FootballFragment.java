@@ -25,6 +25,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdError;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.google.android.material.navigation.NavigationView;
 import com.tie.fantasyking.ApiClient.ApiClient;
 import com.tie.fantasyking.ApiClient.ApiInterface;
@@ -52,6 +58,7 @@ public class FootballFragment extends Fragment  implements NavigationView.OnNavi
 FragmentFootballBinding binding;
 
     Football_Preview_Adapter football_preview_adapter;
+    private InterstitialAd mInterstitialAd;
 
     private Handler sliderHandler =new Handler();
 
@@ -70,7 +77,7 @@ FragmentFootballBinding binding;
 
         getMatchDetail();
 
-
+        loadInt();
         return binding.getRoot();
     }
 
@@ -117,12 +124,14 @@ FragmentFootballBinding binding;
     @Override
     public void onPause() {
         super.onPause();
+        binding.shimmerViewContainer.startShimmer();
         sliderHandler.removeCallbacks(sliderRunnable);
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        binding.shimmerViewContainer.startShimmer();
         sliderHandler.postDelayed(sliderRunnable,3000);
     }
 
@@ -132,7 +141,7 @@ FragmentFootballBinding binding;
     @SuppressLint("NotifyDataSetChanged")
     private void setRecyclerView(List<MatchList_Model.HeavyDetails> list){
         binding.rvPreview.setHasFixedSize(true);
-        football_preview_adapter =new Football_Preview_Adapter(getContext(),list);
+        football_preview_adapter =new Football_Preview_Adapter(getContext(),list,this);
         LinearLayoutManager layoutManager=new LinearLayoutManager(getContext());
         binding.rvPreview.setLayoutManager(layoutManager);
         binding.rvPreview.setAdapter(football_preview_adapter);
@@ -155,12 +164,16 @@ FragmentFootballBinding binding;
                     }else {
                         Toast.makeText(getContext(), matchList_model.getMessage(), Toast.LENGTH_SHORT).show();
                     }
+                    binding.shimmerViewContainer.stopShimmer();
+                    binding.shimmerLayout.setVisibility(View.GONE);
                 }
                 getPromotionDetail();
             }
 
             @Override
             public void onFailure(Call<MatchList_Model> call, Throwable t) {
+                binding.shimmerViewContainer.stopShimmer();
+                binding.shimmerLayout.setVisibility(View.GONE);
                 Toast.makeText(getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -227,5 +240,72 @@ FragmentFootballBinding binding;
         return true;
     }
 
+    private void loadInt() {
+        AdRequest adRequest = new AdRequest.Builder().build();
 
+        InterstitialAd.load(requireActivity(),"ca-app-pub-3328184208021419/9085017755", adRequest,
+                new InterstitialAdLoadCallback() {
+                    @Override
+                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                        // The mInterstitialAd reference will be null until
+                        // an ad is loaded.
+                        mInterstitialAd = interstitialAd;
+
+
+                    }
+
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        // Handle the error
+                        super.onAdFailedToLoad(loadAdError);
+                        mInterstitialAd = null;
+                    }
+                });
+
+
+    }
+
+    // Show the Interstitial Ad when needed
+    void showInterstitialAd() {
+        if (mInterstitialAd != null) {
+            mInterstitialAd.show(requireActivity());
+            mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback(){
+                @Override
+                public void onAdClicked() {
+                    // Called when a click is recorded for an ad.
+
+                }
+
+                @Override
+                public void onAdDismissedFullScreenContent() {
+                    // Called when ad is dismissed.
+                    // Set the ad reference to null so you don't show the ad a second time.
+                    mInterstitialAd.show(requireActivity());
+                    loadInt();
+                }
+
+                @Override
+                public void onAdFailedToShowFullScreenContent(AdError adError) {
+                    // Called when ad fails to show.
+
+                    mInterstitialAd = null;
+                }
+
+                @Override
+                public void onAdImpression() {
+                    // Called when an impression is recorded for an ad.
+
+                }
+
+                @Override
+                public void onAdShowedFullScreenContent() {
+                    // Called when ad is shown.
+
+                }
+            });
+        } else {
+            // The Interstitial Ad is not ready yet. You may choose to try again later or show other content.
+
+        }
+    }
 }

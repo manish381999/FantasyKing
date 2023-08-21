@@ -20,6 +20,8 @@
     <color name="light_sky_blue">#EFF4FE</color>
     <color name="textColor">#121212</color>
     <color name="red">#EC4D4D</color>
+    <color name="grey">#dddddd</color>
+
 
     <color name="notification_icon_color">#FF0000</color> <!-- Replace with your desired color -->
 

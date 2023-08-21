@@ -18,6 +18,9 @@ import android.os.Bundle;
 import android.util.Log;
 
 
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.material.snackbar.Snackbar;
 
 import com.google.android.play.core.appupdate.AppUpdateManager;
@@ -44,6 +47,13 @@ ActivityMainBinding binding;
         super.onCreate(savedInstanceState);
         binding=ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+
 
 
         NavController navController= Navigation.findNavController(MainActivity.this,R.id.frame_layout);

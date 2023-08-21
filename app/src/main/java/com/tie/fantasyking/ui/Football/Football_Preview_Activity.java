@@ -5,11 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.LoadAdError;
 import com.tie.fantasyking.R;
 import com.tie.fantasyking.databinding.ActivityFootballPreviewBinding;
 
 public class Football_Preview_Activity extends AppCompatActivity {
 ActivityFootballPreviewBinding binding;
+    private AdView mAdView;
 
     String id,match,tournamentName,match_date,match_time,matchQuality,match_preview,match_statistics,teamA,teamB,aPlaying11,
             bPlaying11,match_captain,vCaptain,teamStatus;
@@ -20,6 +25,53 @@ ActivityFootballPreviewBinding binding;
         super.onCreate(savedInstanceState);
         binding=ActivityFootballPreviewBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
+        mAdView.setAdListener(new AdListener() {
+            @Override
+            public void onAdClicked() {
+                // Code to be executed when the user clicks on an ad.
+                super.onAdClicked();
+
+
+            }
+
+            @Override
+            public void onAdClosed() {
+                // Code to be executed when the user is about to return
+                // to the app after tapping on an ad.
+            }
+
+            @Override
+            public void onAdFailedToLoad(LoadAdError adError) {
+                // Code to be executed when an ad request fails.
+                super.onAdFailedToLoad(adError);
+                mAdView.loadAd(adRequest);
+            }
+
+            @Override
+            public void onAdImpression() {
+                // Code to be executed when an impression is recorded
+                // for an ad.
+            }
+
+            @Override
+            public void onAdLoaded() {
+                // Code to be executed when an ad finishes loading.
+                super.onAdLoaded();
+            }
+
+            @Override
+            public void onAdOpened() {
+                // Code to be executed when an ad opens an overlay that
+                // covers the screen.
+                super.onAdOpened();
+            }
+        });
 
         id=getIntent().getStringExtra("id");
         img_team_a=getIntent().getStringExtra("im_team_a");

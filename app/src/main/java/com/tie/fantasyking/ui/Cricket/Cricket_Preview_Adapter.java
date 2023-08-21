@@ -25,10 +25,12 @@ import java.util.Locale;
 public class Cricket_Preview_Adapter extends RecyclerView.Adapter<Cricket_Preview_Adapter.CricketViewHolder>{
     Context context;
     List<MatchList_Model.HeavyDetails> list;
+    private CricketFragment cricketFragment;
 
-    public Cricket_Preview_Adapter(Context context, List<MatchList_Model.HeavyDetails> list) {
+    public Cricket_Preview_Adapter(Context context, List<MatchList_Model.HeavyDetails> list, CricketFragment cricketFragment) {
         this.context = context;
         this.list = list;
+        this.cricketFragment = cricketFragment;
     }
 
     @NonNull
@@ -84,6 +86,7 @@ MatchList_Model.HeavyDetails details=list.get(position);
                 intent.putExtra("team_status",details.getTeam_status());
                 intent.putExtra("im_team",details.getTeam_img());
                 context.startActivity(intent);
+                cricketFragment.showInterstitialAd();
             }
         });
 
@@ -92,7 +95,7 @@ MatchList_Model.HeavyDetails details=list.get(position);
 
 
     @Override
-    public int getItemCount() {
+    public int getItemCount()  {
         return list.size();
     }
 

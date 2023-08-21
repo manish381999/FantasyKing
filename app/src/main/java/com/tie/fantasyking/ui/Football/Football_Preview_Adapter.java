@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.tie.fantasyking.R;
 import com.tie.fantasyking.databinding.PreviewItemLayoutBinding;
 
+import com.tie.fantasyking.ui.Cricket.CricketFragment;
 import com.tie.fantasyking.ui.Cricket.MatchList_Model;
 
 import java.text.ParseException;
@@ -29,9 +30,12 @@ public class Football_Preview_Adapter extends RecyclerView.Adapter<Football_Prev
     Context context;
     List<MatchList_Model.HeavyDetails> list;
 
-    public Football_Preview_Adapter(Context context, List<MatchList_Model.HeavyDetails> list) {
+    private FootballFragment footballFragment;
+
+    public Football_Preview_Adapter(Context context, List<MatchList_Model.HeavyDetails> list, FootballFragment footballFragment) {
         this.context = context;
         this.list = list;
+        this.footballFragment = footballFragment;
     }
 
     @NonNull
@@ -84,6 +88,7 @@ public class Football_Preview_Adapter extends RecyclerView.Adapter<Football_Prev
                 intent.putExtra("team_status", details.getTeam_status());
                 intent.putExtra("im_team", details.getTeam_img());
                 context.startActivity(intent);
+                footballFragment.showInterstitialAd();
             }
         });
 

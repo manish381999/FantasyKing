@@ -1,6 +1,8 @@
 package com.tie.fantasyking.ui.Cricket;
 
 import android.annotation.SuppressLint;
+
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -26,6 +28,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdError;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.OnUserEarnedRewardListener;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
+import com.google.android.gms.ads.rewarded.RewardItem;
+import com.google.android.gms.ads.rewarded.RewardedAd;
+import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 import com.google.android.material.navigation.NavigationView;
 import com.tie.fantasyking.ApiClient.ApiClient;
 import com.tie.fantasyking.ApiClient.ApiInterface;
@@ -37,13 +49,9 @@ import com.tie.fantasyking.databinding.FragmentCricketBinding;
 import com.tie.fantasyking.ui.promotion.Promotion_Model;
 import com.tie.fantasyking.ui.promotion.SliderAdapter;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
+
 import java.util.List;
-import java.util.Locale;
+
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -54,8 +62,11 @@ import retrofit2.Retrofit;
 public class CricketFragment extends Fragment implements NavigationView.OnNavigationItemSelectedListener {
 
   FragmentCricketBinding binding;
+    private InterstitialAd mInterstitialAd;
+    private RewardedAd rewardedAd;
 
-  Cricket_Preview_Adapter cricket_preview_adapter;
+
+    Cricket_Preview_Adapter cricket_preview_adapter;
 
   private Handler sliderHandler =new Handler();
   ApiInterface apiInterface;
@@ -73,6 +84,11 @@ public class CricketFragment extends Fragment implements NavigationView.OnNaviga
         apiInterface=retrofit.create(ApiInterface.class);
 
         getMatchDetail();
+
+        loadRed();
+        loadInt();
+
+
 
         NavigationView navigationView = binding.navigationDrawer;
 
@@ -121,6 +137,10 @@ instagram.setOnClickListener(new View.OnClickListener() {
 
 
 
+
+
+
+
     private void setData(List<Promotion_Model.LightDetails> list) {
         binding.viewPagerImageSlider.setAdapter(new SliderAdapter(getContext(),list,binding.viewPagerImageSlider));
 
@@ -164,12 +184,14 @@ binding.viewPagerImageSlider.registerOnPageChangeCallback(new ViewPager2.OnPageC
     @Override
     public void onPause() {
         super.onPause();
+        binding.shimmerViewContainer.startShimmer();
         sliderHandler.removeCallbacks(sliderRunnable);
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        binding.shimmerViewContainer.startShimmer();
         sliderHandler.postDelayed(sliderRunnable,3000);
     }
 
@@ -180,7 +202,7 @@ binding.viewPagerImageSlider.registerOnPageChangeCallback(new ViewPager2.OnPageC
     @SuppressLint("NotifyDataSetChanged")
     private void setRecyclerView(List<MatchList_Model.HeavyDetails> list){
         binding.rvPreview.setHasFixedSize(true);
-       cricket_preview_adapter =new Cricket_Preview_Adapter(getContext(),list);
+       cricket_preview_adapter =new Cricket_Preview_Adapter(getContext(),list,this);
         LinearLayoutManager layoutManager=new LinearLayoutManager(getContext());
         binding.rvPreview.setLayoutManager(layoutManager);
         binding.rvPreview.setAdapter(cricket_preview_adapter);
@@ -199,6 +221,7 @@ binding.viewPagerImageSlider.registerOnPageChangeCallback(new ViewPager2.OnPageC
             @Override
             public void onResponse(@NonNull Call<MatchList_Model> call, @NonNull Response<MatchList_Model> response) {
                 if (response!=null){
+
                     MatchList_Model matchList_model= response.body();
                     if (matchList_model.getStatus().equals("1")){
                         //call recyclerView
@@ -206,12 +229,16 @@ binding.viewPagerImageSlider.registerOnPageChangeCallback(new ViewPager2.OnPageC
                     }else {
                         Toast.makeText(getContext(), matchList_model.getMessage(), Toast.LENGTH_SHORT).show();
                     }
+                    binding.shimmerViewContainer.stopShimmer();
+                    binding.shimmerLayout.setVisibility(View.GONE);
                 }
                 getPromotionDetail();
             }
 
             @Override
             public void onFailure(Call<MatchList_Model> call, Throwable t) {
+                binding.shimmerViewContainer.stopShimmer();
+                binding.shimmerLayout.setVisibility(View.GONE);
                 Toast.makeText(getContext(), t.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
 
             }
@@ -273,7 +300,54 @@ binding.viewPagerImageSlider.registerOnPageChangeCallback(new ViewPager2.OnPageC
                 Toast.makeText(getContext(), "Coming Soon", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.navigation_FantasyTips:
-               startActivity(new Intent(getActivity(), Fantasy_TipsActivity.class));
+                if (rewardedAd != null) {
+                    Activity activityContext = requireActivity();
+                    rewardedAd.show(activityContext, new OnUserEarnedRewardListener() {
+                        @Override
+                        public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
+                            // Handle the reward.
+
+                        }
+                    });
+                    rewardedAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                        @Override
+                        public void onAdClicked() {
+                            // Called when a click is recorded for an ad.
+
+                        }
+
+                        @Override
+                        public void onAdDismissedFullScreenContent() {
+                            // Called when ad is dismissed.
+                            // Set the ad reference to null so you don't show the ad a second time.
+                            startActivity(new Intent(getActivity(), Fantasy_TipsActivity.class));
+                            loadRed();
+                        }
+
+                        @Override
+                        public void onAdFailedToShowFullScreenContent(AdError adError) {
+                            // Called when ad fails to show.
+                            rewardedAd = null;
+                            startActivity(new Intent(getActivity(), Fantasy_TipsActivity.class));
+
+                        }
+
+                        @Override
+                        public void onAdImpression() {
+                            // Called when an impression is recorded for an ad.
+
+                        }
+
+                        @Override
+                        public void onAdShowedFullScreenContent() {
+                            // Called when ad is shown.
+
+                        }
+                    });
+                } else {
+                    startActivity(new Intent(getActivity(), Fantasy_TipsActivity.class));
+                }
+
                 break;
             case R.id.navigation_setting:
                 startActivity(new Intent(getActivity(), SettingActivity.class));
@@ -299,5 +373,89 @@ binding.viewPagerImageSlider.registerOnPageChangeCallback(new ViewPager2.OnPageC
 
     }
 
+    private void loadInt() {
+        AdRequest adRequest = new AdRequest.Builder().build();
 
+        InterstitialAd.load(requireActivity(),"ca-app-pub-3328184208021419/9085017755", adRequest,
+                new InterstitialAdLoadCallback() {
+                    @Override
+                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                        // The mInterstitialAd reference will be null until
+                        // an ad is loaded.
+                        mInterstitialAd = interstitialAd;
+
+
+                    }
+
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        // Handle the error
+                        super.onAdFailedToLoad(loadAdError);
+                        mInterstitialAd = null;
+                    }
+                });
+
+
+    }
+
+    // Show the Interstitial Ad when needed
+    void showInterstitialAd() {
+        if (mInterstitialAd != null) {
+            mInterstitialAd.show(requireActivity());
+            mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback(){
+                @Override
+                public void onAdClicked() {
+                    // Called when a click is recorded for an ad.
+
+                }
+
+                @Override
+                public void onAdDismissedFullScreenContent() {
+                    // Called when ad is dismissed.
+                    // Set the ad reference to null so you don't show the ad a second time.
+                   mInterstitialAd.show(requireActivity());
+                   loadInt();
+                }
+
+                @Override
+                public void onAdFailedToShowFullScreenContent(AdError adError) {
+                    // Called when ad fails to show.
+
+                    mInterstitialAd = null;
+                }
+
+                @Override
+                public void onAdImpression() {
+                    // Called when an impression is recorded for an ad.
+
+                }
+
+                @Override
+                public void onAdShowedFullScreenContent() {
+                    // Called when ad is shown.
+
+                }
+            });
+        } else {
+            // The Interstitial Ad is not ready yet. You may choose to try again later or show other content.
+
+        }
+    }
+    public void loadRed(){
+        AdRequest adRequest = new AdRequest.Builder().build();
+        RewardedAd.load(requireActivity(), "ca-app-pub-3328184208021419/2283342661",
+                adRequest, new RewardedAdLoadCallback() {
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        // Handle the error.
+                        rewardedAd = null;
+                    }
+
+                    @Override
+                    public void onAdLoaded(@NonNull RewardedAd ad) {
+                        rewardedAd = ad;
+
+                    }
+                });
+    }
 }
